@@ -1,3 +1,3 @@
-import { Ship, Gameboard } from './battleship';
+import { Ship, Gameboard, Player } from './battleship';
 
-const board = new Gameboard(10);
+const board = new Gameboard();
