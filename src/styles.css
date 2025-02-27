@@ -1,5 +1,5 @@
 body {
-    background-color: darkslategray;
+    background-color: rgb(123, 199, 199);
     font-family: Arial, sans-serif;
 }
 
@@ -12,12 +12,23 @@ body {
 }
 
 .content {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin-top: 10vh;
-    justify-content: center;
-    gap: 5vw;
+    gap: 10vw;
 }
 
+.leftHalf,
+.rightHalf {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content button {
+    margin-top: 3vh;
+}
 .playerContent,
 .computerContent {
     display: flex;
@@ -25,16 +36,16 @@ body {
     justify-items: center;
     align-items: center;
     border: 2mm solid black;
-    background-color: rgb(98, 125, 134);
+    background-color: rgb(152, 201, 218);
     border-radius: 20px;
     width: 30vw;
     height: 50vh;
     padding: 5%;
 }
 
-.playerContent h2,
-.computerContent h2 {
-    margin-top: -5vh;
+.leftHalf h2,
+.rightHalf h2 {
+    margin-top: -10vh;
 }
 
 .playerBoard,
@@ -46,6 +57,17 @@ body {
     grid-template-rows: repeat(10, 1fr);
     width: 100%;
     height: 100%;
+}
+
+.playerBoard .blankTile {
+    background-color: rgb(40, 40, 247);
+}
+
+.playerBoard .ship {
+    background-color: #747373;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center;
 }
 
 .input {
@@ -69,7 +91,7 @@ body {
     font-size: 16px;
 }
 
-.input button {
+button {
     padding: 5px 10px;
     font-size: 16px;
     cursor: pointer;

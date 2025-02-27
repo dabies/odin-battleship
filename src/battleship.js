@@ -17,6 +17,12 @@ class Ship {
     }
 }
 
+class Miss {
+    constructor() {
+        this.type = 'miss';
+    }
+}
+
 class Gameboard {
     constructor() {
         this.width = 10;
@@ -42,9 +48,9 @@ class Gameboard {
             return false;
         } else if(this.board[x][y] === 0) {
             console.log('You missed.');
-            this.board[x][y] = 'miss';
+            this.board[x][y] = new Miss();
             return true;
-        } else if (this.board[x][y] === 'miss' || this.board[x][y] === 'hit') {
+        } else if (this.board[x][y] instanceof Miss || this.board[x][y] === 'hit') {
             console.log('That square has already been attacked');
             return false;
         } else {
@@ -104,6 +110,45 @@ class Gameboard {
         coordinates.forEach(([x, y]) => {
             this.board[x][y] = ship;
         })
+        return true;
+    }
+
+    getRandomDirection() {
+        return Math.random() < 0.5 ? 'horizontal' : 'vertical';
+    }
+
+    generateRandomCoordinate() {
+        let min = Math.ceil(0);
+        let max = Math.floor(9);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    randomizeShipPlacements() {
+        const ship1 = new Ship(2);
+        const ship2 = new Ship(3);
+        const ship3 = new Ship(3);
+        const ship4 = new Ship(4);
+        const ship5 = new Ship(5);
+        const ships = [ship1, ship2, ship3, ship4, ship5];
+
+        for(const ship of ships) {
+            let x = this.generateRandomCoordinate();
+            let y = this.generateRandomCoordinate();
+            let direction = this.getRandomDirection();
+            let tries = 0;
+            while(!this.placeShip(ship, x, y, direction) && tries < 300) {
+                x = this.generateRandomCoordinate();
+                y = this.generateRandomCoordinate();
+                direction = this.getRandomDirection();
+                tries++;
+            }
+
+            if(tries >= 300) {
+                console.log('Computer failed to find a valid placement after 300 attempts.')
+                return false;
+            }    
+        }
+        return true;
     }
 
     isPlacementValid(coordinates) {
@@ -130,7 +175,7 @@ class Player {
         let min = Math.ceil(0);
         let max = Math.floor(9);
         return Math.floor(Math.random() * (max - min + 1) + min);
-      }
+    }
 
     computerAttack(playerBoard) {
         let randomX = this.generateRandomCoordinate();
