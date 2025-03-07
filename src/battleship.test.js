@@ -59,14 +59,14 @@ it('Places ship and registers if it is sunk', () => {
     //check the return values of the receiveAttack method
     expect(attackResult1).toBe(true);
     expect(attackResult2).toBe(true);
-    expect(attackResult3).toBe(true);
+    expect(attackResult3).toBe('sunk');
 });
 
 //testing Player class functionality
 const playerOneBoard = new Gameboard();
-const playerOne = new Player(playerOneBoard)
+const playerOne = new Player('player', playerOneBoard)
 const computerBoard = new Gameboard();
-const computerPlayer = new Player(computerBoard);
+const computerPlayer = new Player('computer', computerBoard);
 computerPlayer.board.placeShip(1, 6, 'horizontal');
 
 it('Can attack opponents', () => {

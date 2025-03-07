@@ -60,7 +60,10 @@ body {
 }
 
 .playerBoard .blankTile {
-    background-color: rgb(40, 40, 247);
+    text-align: center;
+    vertical-align: middle;
+    line-height: 5vh;
+    font-size: 2rem;
 }
 
 .playerBoard .ship {
@@ -68,6 +71,10 @@ body {
     border-radius: 4px;
     background-size: cover;
     background-position: center;
+}
+
+.playerBoard .hitShip {
+    background-color: crimson;
 }
 
 .input {
@@ -98,17 +105,54 @@ button {
 }
 
 .blankTile {
-    background-color: aliceblue;
+    background-color: rgb(40, 40, 247);
     border: 1px solid black;
     height: 5vh;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 5vh;
+    font-size: 2rem;
 }
 
-.playerBoard div:hover,
 .computerBoard div:hover {
     background-color: blanchedalmond;
 }
 
+.computerBoard .seaTile {
+    background-color: rgb(40, 40, 247);
+}
 
+.computerBoard .seaTile:hover {
+    background-color: rgb(40, 40, 247);
+}
 
+.computerBoard .hitShip {
+    background-color: crimson;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 5vh;
+    font-size: 2rem;
+}
 
+.computerBoard .hitShip:hover {
+    background-color: crimson;
+}
+
+.bulletin {
+    width: 60vw;
+    height: 12vh;
+    border: 1mm solid black;
+    background-color: rgb(192, 150, 99);
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 2rem;
+    font-size: 1.5rem;
+    margin-top: -3vh;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5; /* Makes the board appear disabled */
+}
 
