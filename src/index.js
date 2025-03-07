@@ -32,6 +32,7 @@ let shipsPlaced = false;
 
 //assign event listeners
 $playerNameSubmit.addEventListener('click', () => {
+    //event listener to take players name, update labels to boards, and then set up the bulletin
     let name = $playerNameInput.value;
     if(name) {
        labelBoards(name);
@@ -44,18 +45,22 @@ $playerNameSubmit.addEventListener('click', () => {
     }
 })
 
+//event listener for randomizing ships button
 $randomizeButton.addEventListener('click', () => {
+    //clear boards when clicked, and randomize placements again
     clearBoard(playerOne.board, $playerDiv);
     clearBoard(computerPlayer.board, $computerDiv);
     playerOne.board.randomizeShipPlacements();
     computerPlayer.board.randomizeShipPlacements();
 
+    //update boards to reflect these new placements
     updatePlayerBoardDisplay(playerOne.board, $playerDiv);
     updatePlayerBoardDisplay(computerPlayer.board, $computerDiv);
     shipsPlaced = true;
     displayOnBulletin('Your ships have been placed, press the play button to start the game!');
 })
 
+//event listener for starting the game
 $playButton.addEventListener('click', () => {
     if (shipsPlaced === false) {
         displayOnBulletin('Must place ships before playing!');

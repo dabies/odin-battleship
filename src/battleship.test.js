@@ -34,7 +34,7 @@ it('Rejects move on coordinate that is already hit', () => {
 })
 
 it('Allows one hit on coordinate before rejecting second hit', () => {
-    expect(board.receiveAttack(2, 4)).toBe(true);
+    expect(board.receiveAttack(2, 4)).toBe('miss');
     expect(board.receiveAttack(2, 4)).toBe(false);
 })
 
@@ -57,8 +57,8 @@ it('Places ship and registers if it is sunk', () => {
     expect(unluckyShip.isSunk).toBe(true);
 
     //check the return values of the receiveAttack method
-    expect(attackResult1).toBe(true);
-    expect(attackResult2).toBe(true);
+    expect(attackResult1).toBe('hit');
+    expect(attackResult2).toBe('hit');
     expect(attackResult3).toBe('sunk');
 });
 
@@ -71,7 +71,7 @@ computerPlayer.board.placeShip(1, 6, 'horizontal');
 
 it('Can attack opponents', () => {
     const firstAttack = playerOne.attack(1, 6, computerPlayer.board);
-    expect(firstAttack).toBe(true);
+    expect(firstAttack).toBe('miss');
 })
 
 it('Still does not allow you to attack same square twice', () => {
@@ -81,5 +81,5 @@ it('Still does not allow you to attack same square twice', () => {
 
 it('Handles computer attacks', () => {
     const computerAttack = computerPlayer.computerAttack(playerOneBoard);
-    expect(computerAttack).toBe(true);
+    expect(computerAttack).toBe('miss');
 })
